@@ -26,6 +26,7 @@ app.post('/register', register.handleRegister(database, bcrypt));
 app.post('/image', image.handleImage(database));
 app.post('/imageurl', image.handleApiCall);
 
-app.listen(4000, () => {
-  console.log("app running on 4000");
+let port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log(`app running on ${port}`);
 })
