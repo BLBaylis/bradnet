@@ -21,7 +21,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/', res.send("Welcome to Bradnet"));
+app.get('/', (req, res) => res.send("Welcome to Bradnet"));
 app.post('/signin', signin.handleSignin(database, bcrypt));
 app.post('/register', register.handleRegister(database, bcrypt));
 app.post('/image', image.handleImage(database));
