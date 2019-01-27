@@ -10,10 +10,8 @@ const signin = require('./controllers/signin');
 const database = knex({
   client: 'pg',
   connection: {
-    host : '127.0.0.1',
-    user : 'postgres',
-    password : 'postgreSQLB00st5980',
-    database : 'bradnet'
+    host : process.env.DATABASE_URL,
+    ssl : true
   }
 });
 

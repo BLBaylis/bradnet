@@ -52,7 +52,7 @@ const handleRegister = (database, bcrypt) => (req, res) => {
     })
     .catch( err => {
       console.error(err);
-      res.status(400).json('This account already exists');
+      res.status(400).json('This account may already exist');
     })
   })
 }
