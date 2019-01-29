@@ -5,7 +5,7 @@ const handleRegister = (database, bcrypt) => (req, res) => {
   if (!password || !email || !username ) {
     return res(400).json("empty field");
   }
-  let serviceIdName;
+  let serviceIdName = service === 'facebrain' ? 'fb_id' : 'ttt_id';
   bcrypt.hash(password, null, null, function(err, hash) {
     if (err) {
       console.error(err);
@@ -46,7 +46,7 @@ const handleRegister = (database, bcrypt) => (req, res) => {
       res.status(200).json({
         username,
         email,
-        id : [result[0][serviceIdName]],
+        id : result[0][serviceIdName],
         ...result[0]
       })
     })
