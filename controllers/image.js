@@ -1,7 +1,7 @@
 const clarifai = require('clarifai');
 
 const app = new Clarifai.App({
-  apiKey: "94cc0409d4ab41698e2988f413cc60ef"
+  apiKey: process.env.API_KEY
 });
 
 const handleApiCall = (req, res) => {
@@ -16,10 +16,10 @@ const handleApiCall = (req, res) => {
     .catch(console.error);
 }
 
-const handleImage = (database) => (req, res) => {
+const handleImage = database => (req, res) => {
   const { id, faceCountIncre } = req.body;
-  database('facebrain')
-    .where('fb_id', '=', id)
+  database('users')
+    .where('id', '=', id)
     .increment({
       'image_count': 1,
       'face_count' : faceCountIncre

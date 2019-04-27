@@ -1,13 +1,11 @@
 const getLoginInfo = require('../getLoginInfo').getLoginInfo;
 
 const handleSignin = (database, bcrypt) => (req, res) => {
-  const { email, password, service } = req.body;
-  let serviceIdName;
-  if (service === 'facebrain') {serviceIdName = 'fb_id'}
-  if (service === 'tictactoe') {serviceIdName = 'ttt_id'}
-  getLoginInfo(database)(service, serviceIdName, email)
+  const { email, password } = req.body;
+  getLoginInfo(database)(email)
   .then(data => {
-    const {password : hash, ...dataToSend} = data;
+    if (!data) {return res.status(422).json('Bad credentials')}
+    const { hash, ...dataToSend } = data;
     bcrypt.compare(password, hash, (err, hashRes) => {
       if (hashRes) {
         res.status(200).json(dataToSend);
