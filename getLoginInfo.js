@@ -5,6 +5,4 @@ const getLoginInfo = database => email => {
     .catch(console.error)
 }
 
-module.exports = {
-  getLoginInfo : getLoginInfo,
-}
+module.exports = {getLoginInfo: getLoginInfo}

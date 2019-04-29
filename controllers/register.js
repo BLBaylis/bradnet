@@ -1,4 +1,5 @@
 const getLoginInfo = require('../getLoginInfo').getLoginInfo;
+const formatDataToBeReturned = require('../formatDataToBeReturned').formatDataToBeReturned;
 
 const handleRegister = (database, bcrypt) => (req, res) => {
   const { password, email, username } = req.body;
@@ -17,7 +18,8 @@ const handleRegister = (database, bcrypt) => (req, res) => {
     }, '*')
     .into('users')
     .then(result => {
-      return res.status(200).json(result)
+      const { hash, ...userInfo } = result[0];
+      return res.status(200).json(formatDataToBeReturned(userInfo));
     })
     .catch( err => {
       console.error(err);

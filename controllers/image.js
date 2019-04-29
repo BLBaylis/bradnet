@@ -17,6 +17,7 @@ const handleApiCall = (req, res) => {
 }
 
 const handleImage = database => (req, res) => {
+  console.log(req.body);
   const { id, faceCountIncre } = req.body;
   database('users')
     .where('id', '=', id)
