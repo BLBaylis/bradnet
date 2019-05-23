@@ -29,7 +29,7 @@ app.post('/signin', signin.handleSignin(database, bcrypt));
 app.post('/register', register.handleRegister(database, bcrypt));
 app.post('/image', image.handleImage(database));
 app.post('/imageurl', image.handleApiCall);
-app.post('/contact', /*(req, res) => res.status(200).json("failed"));*/contact.handleContact(nodemailer));
+app.post('/contact', contact.handleContact(nodemailer));
 
 
 let port = process.env.PORT || 4000;
